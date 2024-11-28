@@ -183,3 +183,24 @@ namespace WebApplication2.Controllers
 
     }
 }
+
+# MODELOS
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebApplication2.Models
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class Livro 
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Autor { get; set; } = string.Empty;
+        public string Ano { get; set; } = string.Empty;
+        public int Qtd {  get; set; }
+        public bool Alugado { get; set; }
+    }
+}
+
