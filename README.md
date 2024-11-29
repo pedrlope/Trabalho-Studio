@@ -17,7 +17,7 @@ namespace WebApplication2.Controllers
     {
         Id = 1,
         Name = "Dom Casmurro",
-        Autor = "Machado de Assis", // Autor substitui Description
+        Autor = "Machado de Assis", 
         Ano = "1899",
         Qtd = 2
     },
@@ -136,7 +136,7 @@ namespace WebApplication2.Controllers
 
         };
          [HttpGet]
-        public ActionResult<List<Livro>> SearchLivro()
+        public ActionResult<List<Livro>> VerLivros()
         {
             return Ok(livros);
         }
@@ -148,7 +148,6 @@ namespace WebApplication2.Controllers
             var pesquisa = livros.Find(x => x.Id == id);
             if (id == 0 || pesquisa is null)
             {
-
                 return NotFound("Este Livro não foi encontrado");
             }
             return Ok(pesquisa);
@@ -176,6 +175,11 @@ namespace WebApplication2.Controllers
             {
                 return NotFound("Livro esgotado");
             }
+            if (pesquisa.livros.Qtd = 0)
+            {
+                return NotFound("Livro esgotado");
+            }
+
             pesquisa.Alugado = true;
             return Ok(pesquisa);
             pesquisa.Qtd--;
@@ -183,24 +187,3 @@ namespace WebApplication2.Controllers
 
     }
 }
-
-# MODELOS
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace WebApplication2.Models
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class Livro 
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Autor { get; set; } = string.Empty;
-        public string Ano { get; set; } = string.Empty;
-        public int Qtd {  get; set; }
-        public bool Alugado { get; set; }
-    }
-}
-
